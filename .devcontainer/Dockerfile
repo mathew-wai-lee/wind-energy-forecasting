@@ -29,4 +29,5 @@ RUN rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 #   --platform linux/amd64 \
 #   -e SPARK_HOME=/opt/spark \
 #   -e ZEPPELIN_NOTEBOOK_DIR='/notebooks' \
+#   -e ZEPPELIN_NOTEBOOK_STORAGE=org.apache.zeppelin.notebook.repo.VFSNotebookRepo \
 #   --name zeppelin zep_spark:latest
