@@ -50,6 +50,8 @@ object Runner {
     println(df.describe().show(truncate = false))
     println("")
 
+    // df.createOrReplaceTempView()
+
     scala.io.StdIn.readLine()
   }
 }
