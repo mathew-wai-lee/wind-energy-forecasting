@@ -1,6 +1,6 @@
 FROM apache/zeppelin:0.12.0
 
-ENV SPARK_VERSION=4.0.0
+ENV SPARK_VERSION=3.5.6
 ENV HADOOP_VERSION=3
 
 USER root
@@ -22,5 +22,11 @@ RUN mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /opt/spark
 RUN rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 # docker build -t zep_spark .devcontainer --platform linux/amd64
-# docker run -u $(id -u) -p 8080:8080 --rm -v ./notebooks:/notebooks  --platform linux/amd64 \
-# -e SPARK_HOME=/opt/spark  -e ZEPPELIN_NOTEBOOK_DIR='/notebooks' --name zeppelin zep_spark:latest
+
+# docker run -u $(id -u) -p 8080:8080 --rm \
+#   -v ./notebooks:/notebooks \
+#   -v $(pwd)/data:/data \
+#   --platform linux/amd64 \
+#   -e SPARK_HOME=/opt/spark \
+#   -e ZEPPELIN_NOTEBOOK_DIR='/notebooks' \
+#   --name zeppelin zep_spark:latest
