@@ -1,33 +1,13 @@
-FROM apache/zeppelin:0.12.0
+FROM quay.io/jupyter/pyspark-notebook:latest
 
-ENV SPARK_VERSION=3.5.6
-ENV HADOOP_VERSION=3
-
-USER root
-RUN apt-get update && apt-get install -y curl unzip wget grep sed vim tzdata && apt-get clean
+COPY environment.yml /tmp/environment.yml
 
 USER root
-RUN apt-get update && apt-get install -y openjdk-17-jdk && apt-get clean
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-ENV PATH="$JAVA_HOME/bin:$PATH"
 
-# auto upload zeppelin interpreter lib
-RUN rm -rf /zeppelin
+WORKDIR /home/jovyan/work
 
-RUN rm -rf /spark
-# RUN wget https://www-us.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
-RUN wget https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
-RUN tar zxvf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
-RUN mv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} /opt/spark
-RUN rm spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
+RUN conda env update --prune -f /tmp/environment.yml
 
-# docker build -t zep_spark .devcontainer --platform linux/amd64
+RUN conda clean -afy
 
-# docker run -u $(id -u) -p 8080:8080 --rm \
-#   -v ./notebooks:/notebooks \
-#   -v $(pwd)/data:/data \
-#   --platform linux/amd64 \
-#   -e SPARK_HOME=/opt/spark \
-#   -e ZEPPELIN_NOTEBOOK_DIR='/notebooks' \
-#   -e ZEPPELIN_NOTEBOOK_STORAGE=org.apache.zeppelin.notebook.repo.VFSNotebookRepo \
-#   --name zeppelin zep_spark:latest
+EXPOSE 8888 4040 8080 8081

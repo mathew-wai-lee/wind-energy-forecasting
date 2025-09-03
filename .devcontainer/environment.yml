@@ -1,0 +1,31 @@
+name: pyspark
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - pyspark
+      - kaggle
+      - jupyterlab
+      - matplotlib
+      - pandas
+      - seaborn
+      - numpy
+      - scikit-learn
+      - scipy
+      - ipywidgets
+      - jupyterlab_widgets
+      # - black
+      # - isort
+      # - flake8
+      # - pylint
+      # - autopep8
+      - duckdb
+      - jupyter_contrib_nbextensions 
+      - jupyter_nbextensions_configurator
+      - jupysql
+      - quarto
+      - ydata-profiling
+      - ipykernel
