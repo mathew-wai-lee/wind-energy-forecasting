@@ -29,9 +29,11 @@ object Runner {
 
     println("Spark Session created successfully.")
 
+    println(System.getProperty("user.dir"))    
+
     val df = spark.read
       .option("header", "true")
-      .csv("data/Turbine_Data.csv")
+      .csv("./src/main/resources/data/Turbine_Data.csv")
     println("CSV Read successfully")
 
     println("")
