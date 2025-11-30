@@ -1,21 +1,15 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "scala",
-            "request": "launch",
-            "name": "Run mainLocal (Spark)",
-            "mainClass": "com.mathewlee.windenergyforecasting.mainLocal",
-            "buildTarget": "wind-energy-forecasting",
-            "args": [],
-            "jvmOptions": [
-                "-Dspark.master=local[*]",
-                "-Dspark.submit.deployMode=client"
-            ],
-            "env": {
-                "SPARK_HOME": "/path/to/your/spark",
-                "JAVA_HOME": "/path/to/your/java"
-            }
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "scala",
+      "request": "launch",
+      "name": "mainLocal",
+      "mainClass": "com.mathewlee.windenergyforecasting.mainLocal",
+      "buildTarget": "file:/home/mathewlee/Developer/wind-energy-forecasting/?id=wind-energy-forecasting",
+      "args": [],
+      "jvmOptions": [],
+      "env": {}
+    }
+  ]
 }
