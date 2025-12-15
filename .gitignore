@@ -434,3 +434,5 @@ gunicorn.conf.py
 !.claude/skills/
 !.claude/hooks/
 !.claude/settings.json
+
+*.png
